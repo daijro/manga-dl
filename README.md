@@ -11,12 +11,21 @@ Run this command in a terminal:
 pip3 install -r requirements.txt
 ```
 
+(Tested on python 3.8.5)
+
 
 # Usage
 
-By running the file, you will be prompted to enter a manga name and to select an option
+By running the file, you will be prompted to search for a manga
 
-### Command line arguments:
+### In action
+
+![screen recording](https://user-images.githubusercontent.com/72637910/119973575-4553cd00-bf79-11eb-90eb-ab6debd13777.gif)
+
+
+<hr width=50>
+
+### Command line arguments
 
 
 ##### Options
@@ -48,6 +57,3 @@ $ manga-dl.py --name "one piece"
    Doujin Sakka Collection - himegoto | 117,749 views
 ```
 
-### In action
-
-![screen recording](https://user-images.githubusercontent.com/72637910/119973575-4553cd00-bf79-11eb-90eb-ab6debd13777.gif)
