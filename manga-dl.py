@@ -6,6 +6,7 @@ import time
 from threading import Thread
 from eta import ETA
 from colorama import Fore
+import sys
 
 
 def eta_loop():
@@ -36,7 +37,12 @@ def clean_list(l):
 
 def search_mangas(q):
     data = requests.get('https://manganelo.com/search/story/'+format_for_url(q)).text
-    chapters = bs(data, features='lxml').find('div', class_="panel-search-story").find_all('div', class_='search-story-item')
+    chapters = bs(data, features='lxml').find('div', class_="panel-search-story")
+    if chapters == None:
+        print(Fore.RED+'No results found.'+Fore.RESET)
+        if len(sys.argv) == 1: input()
+        exit()
+    chapters = chapters.find_all('div', class_='search-story-item')
     mangas = []
     for chap in chapters:
         title = chap.find('a', class_="a-h text-nowrap item-title")['title'].strip()
@@ -112,7 +118,6 @@ ticks, total_ticks, message, eta = None, None, None, None
 if __name__ == '__main__':
     import inquirer
     import argparse
-    import sys
     parser = argparse.ArgumentParser(description='Mass downloads manga from manganelo.com')
     parser.add_argument('--path', '-p', type=str, default=None, help="Path to download manga")
     parser.add_argument('--name', '-n', type=str, default=None, help="Name of manga to search")
